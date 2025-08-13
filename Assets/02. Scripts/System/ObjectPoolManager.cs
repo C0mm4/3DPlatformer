@@ -18,6 +18,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
 
     private void Init()
     {
+        // Pool √ ±‚»≠
         Pool = new ObjectPool<GameObject>(CreatePooledItem, OnTakeFromPool, OnReturnedToPool,
         OnDestroyPoolObject, true, defaultCapacity, maxPoolSize);
 

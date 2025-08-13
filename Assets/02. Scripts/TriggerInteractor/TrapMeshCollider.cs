@@ -9,6 +9,7 @@ public class TrapMeshCollider : TriggerInteractor
         CombineAllMeshes();
     }
 
+    // 하위 함정 객체의 Mesh를 합쳐서 Collider로 만듦
     public void CombineAllMeshes()
     {
         MeshFilter[] meshFilters = GetComponentsInChildren<MeshFilter>();
@@ -43,9 +44,9 @@ public class TrapMeshCollider : TriggerInteractor
 
     protected override void OnTriggerEvent(Collider other)
     {
+        // 플레이어만 적용
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Hit");
             PlayerManager.Instance.Player.condition.DecreaseHealth(1);
         }
     }

@@ -9,5 +9,9 @@ public abstract class TriggerInteractor : MonoBehaviour
         OnTriggerEvent(other);
     }
 
+    /// <summary>
+    /// Trigger 작동 시 적용되는 메소드
+    /// </summary>
+    /// <param name="collider">충돌 Collider</param>
     protected abstract void OnTriggerEvent(Collider collider);
 }

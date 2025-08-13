@@ -9,15 +9,7 @@ public class Equipment : MonoBehaviour
     public Equip curEquip;
     public Transform equipParent;
 
-    public PlayerController controller;
-    public PlayerCondition condition;
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        controller = GetComponent<PlayerController>();
-        condition = GetComponent<PlayerCondition>();
-    }
 
     public void EquipNew(ItemData data)
     {

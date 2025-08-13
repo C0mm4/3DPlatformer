@@ -9,12 +9,13 @@ public class TargetPlate : MonoBehaviour, IDamagable
 
     public void TakePhysicalDamage(int damage)
     {
-        Debug.Log("Hit!");
+        // 맞을 시 UI만 생성
         CreateDamageUI(damage);
     }
 
     private void CreateDamageUI(int damage)
     {
+        // UI객체를 생성
         GameObject go = Instantiate(DamageUI, transform.position, Quaternion.identity);
         var body = go.AddComponent<Rigidbody>();
         body.AddForce(Random.Range(-2, 2), Random.Range(5, 10), 0, ForceMode.Impulse);

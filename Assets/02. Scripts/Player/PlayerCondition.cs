@@ -19,6 +19,7 @@ public class PlayerCondition : MonoBehaviour
 
     private void Start()
     {
+        // UI 갱신을 위한 더미 값 증감
         AddHealth(0);
         AddStamina(0);
     }
@@ -50,12 +51,12 @@ public class PlayerCondition : MonoBehaviour
 
         Stamina.Subtract(value);
         onChangeStamina?.Invoke(-value);
-        Debug.Log("UseStamina");
         return true;
     }
 
     public void Update()
     {
+        /* Test Block
         if (Input.GetKeyDown(KeyCode.X))
         {
             AddHealth(5f);
@@ -64,6 +65,7 @@ public class PlayerCondition : MonoBehaviour
         {
             AddStamina(26f);
         }
+        */
     }
 
 }

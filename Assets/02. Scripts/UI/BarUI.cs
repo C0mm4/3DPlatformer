@@ -31,8 +31,10 @@ public class BarUI : MonoBehaviour
 
     public void OnChangeValue(float increaseValue)
     {
+        // 목표 Condition 검출
         targetCondition = FindTargetCondition();
 
+        // 목표 값 정규화
         float normalizeValue = targetCondition.GetPercentage();
         targetFill = Mathf.Clamp01(normalizeValue);
 

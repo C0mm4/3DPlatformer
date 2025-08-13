@@ -27,6 +27,7 @@ public class Interaction : MonoBehaviour
 
     private void Update()
     {
+        // 주기적으로 Ray 검사
         if (Time.time - lastCheckTime > checkRate)
         {
             lastCheckTime = Time.time;

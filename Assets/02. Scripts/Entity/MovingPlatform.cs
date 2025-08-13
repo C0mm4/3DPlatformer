@@ -15,26 +15,31 @@ public class MovingPlatform : InteractorObj
 
     void FixedUpdate()
     {
+
+        // 작동 시 이동
+        if (isTrigger)
+        {
+            transform.position += Vector3.forward * Time.fixedDeltaTime;
+        } 
+
+        // 움직인 값 계산
         Vector3 delta = transform.position - lastPosition;
 
+        // 접촉한 물체들의 위치 조정
         foreach (var rb in passengers)
         {
             if (rb != null)
             {
-                rb.position += delta; // 플랫폼 이동량만큼 같이 이동
+                rb.position += delta; 
             }
         }
-
-
+        // 마지막 위치 갱신
         lastPosition = transform.position;
-        if (isTrigger)
-        {
-            transform.position += Vector3.forward * Time.fixedDeltaTime;
-        }
     }
 
     void OnCollisionEnter(Collision collision)
     {
+        // 충돌 시 해당 RigidBody 등록
         Rigidbody rb = collision.rigidbody;
         if (rb != null && !passengers.Contains(rb))
         {
@@ -44,6 +49,7 @@ public class MovingPlatform : InteractorObj
 
     void OnCollisionExit(Collision collision)
     {
+        // 충돌 해제 시 등록 해제
         Rigidbody rb = collision.rigidbody;
         if (rb != null)
         {

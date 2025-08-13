@@ -34,6 +34,7 @@ public class PlayerView : MonoBehaviour
 
     public void OnEnable()
     {
+        // Action 구독
         condition.onChangeHP += HPChangeAction;
         condition.onChangeHP += HPBar.OnChangeValue;
         condition.onChangeStamina += StaminaChangeAction;
@@ -45,6 +46,7 @@ public class PlayerView : MonoBehaviour
 
     public void OnDisable()
     {
+        // Action 해제
         condition.onChangeHP -= HPChangeAction;
         condition.onChangeHP -= HPBar.OnChangeValue;
         condition.onChangeStamina -= StaminaChangeAction;
@@ -60,13 +62,16 @@ public class PlayerView : MonoBehaviour
             StopCoroutine(coroutine);
         }
 
+        // Stat Indicator 색상 설정
         StatIndicator.gameObject.SetActive(true);
         if(value < 0)
         {
+            // 감소
             StatIndicator.color = new Color(1f, 100f / 255f, 100f / 255f);
         }
         else if (value > 0)
         {
+            // 회복
             StatIndicator.color = new Color(8f / 255f, 255f / 255f, 53f / 255f);
         }
         else
@@ -81,13 +86,13 @@ public class PlayerView : MonoBehaviour
 
     public void StaminaChangeAction(float value) 
     {
-
+        // 크게 증가하는 거 아니면 무시
         if (value <= 25) return;
         if (coroutine != null)
         {
             StopCoroutine(coroutine);
         }
-
+        // Stat Indicator 색상 설정
         StatIndicator.color = new Color(8f / 255f, 255f / 255f, 202f / 255f);
         
         StatIndicator.gameObject.SetActive(true);
@@ -98,6 +103,7 @@ public class PlayerView : MonoBehaviour
     {
         float a = startAlpha;
 
+        // 알파 점차 감소
         while (a > 0)
         {
             a -= (startAlpha / IndicateTime) * Time.deltaTime;
@@ -110,12 +116,14 @@ public class PlayerView : MonoBehaviour
 
     public void EnterInteractRay(string text)
     {
+        // 상호작용 UI 활성화
         InteractorText.gameObject.SetActive(true);
         InteractorText.text = text;
     }
 
     public void ExitInteractRay()
     {
+        // 상호작용 UI 비활성화
         InteractorText.gameObject.SetActive(false);
     }
 }

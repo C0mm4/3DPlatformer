@@ -43,16 +43,17 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
+        // 사다리 탈 땐 사다리 이동 아니면 일반 이동
         if (isClimbing)
             ClimbMove();
         else
             Move();
 
-        SlopeVelocityFix();
     }
 
     private void Update()
     {
+        // 공격 입력인 경우 무기 공격 진행
         if (isAttackInput)
         {
             equip.OnAttackInput();
@@ -85,18 +86,6 @@ public class PlayerController : MonoBehaviour
         body.velocity = dir;
     }
 
-    private void SlopeVelocityFix()
-    {
-        if (isGrounded() && !isClimbing)
-        {
-            Vector3 vel = body.velocity;
-            if (vel.y > 0)
-            {
-                vel.y = 0;
-                body.velocity = vel;
-            }
-        }
-    }
 
     void CameraLook()
     {
@@ -107,6 +96,7 @@ public class PlayerController : MonoBehaviour
         transform.eulerAngles += new Vector3(0, mouseDelta.x * lookSensitivity, 0);
     }
 
+    // Move Key Input
     public void OnMove(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -120,11 +110,13 @@ public class PlayerController : MonoBehaviour
         
     }
 
+    // Mouse Look Input
     public void OnLook(InputAction.CallbackContext context)
     {
         mouseDelta = context.ReadValue<Vector2>();
     }
 
+    // Jump Key Input
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Started && isGrounded())
@@ -133,12 +125,12 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    // Attack Key Input
     public void OnAttack(InputAction.CallbackContext context)
     {
         if(context.phase == InputActionPhase.Performed)
         {
             isAttackInput = true;
-//            equip.OnAttackInput();
         }
         else if (context.phase == InputActionPhase.Canceled || context.phase == InputActionPhase.Disabled)
         {
@@ -148,6 +140,7 @@ public class PlayerController : MonoBehaviour
 
     private bool isGrounded()
     {
+        // 땅에 있는지 검사
         Ray[] rays = new Ray[4]
         {
             new Ray((transform.position + (transform.forward * 0.2f) + transform.up * 0.01f), Vector3.down),
@@ -167,15 +160,10 @@ public class PlayerController : MonoBehaviour
         return false;
     }
 
-    void ToggleCursor()
-    {
-        bool toggle = Cursor.lockState == CursorLockMode.Locked;
-        Cursor.lockState = toggle ? CursorLockMode.None : CursorLockMode.Locked;
-        canLook = !toggle;
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
+        // MovableObj 충돌 시 해당 객체에 힘 전달
         if (collision.transform.CompareTag("MovableObj"))
         {
             if(collision.gameObject.TryGetComponent<Rigidbody>(out Rigidbody body))
@@ -185,7 +173,7 @@ public class PlayerController : MonoBehaviour
             }
         }
 
-
+        // 사다리 충돌 시 사다리 모드
         if (collision.transform.CompareTag("Ladder"))
         {
             isClimbing = true;
@@ -196,6 +184,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
+        // 사다리 충돌 종료 시 사다리 모드 종료
         if (collision.transform.CompareTag("Ladder"))
         {
             isClimbing = false;

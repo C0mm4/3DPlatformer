@@ -12,7 +12,7 @@ public class Trans2RectTrans : MonoBehaviour
     {
         Vector3 screenPos = Camera.main.WorldToScreenPoint(transform.position);
 
-        // ½ºÅ©¸° ÁÂÇ¥ ¡æ RectTransform ÁÂÇ¥
+        // ½ºÅ©¸° ÁÂÇ¥ > RectTransform ÁÂÇ¥
         RectTransformUtility.ScreenPointToLocalPointInRectangle(
             canvas.transform as RectTransform,
             screenPos,
