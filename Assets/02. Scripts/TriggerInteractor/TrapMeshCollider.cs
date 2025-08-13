@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class TrapMeshCollider : MonoBehaviour
+public class TrapMeshCollider : TriggerInteractor
 {
     public void Awake()
     {
@@ -41,9 +41,12 @@ public class TrapMeshCollider : MonoBehaviour
         collider.isTrigger = true;   // 트리거 활성화
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEvent(Collider other)
     {
-        Debug.Log("Hit");
-        PlayerManager.Instance.Player.condition.DecreaseHealth(1);
+        if (other.CompareTag("Player"))
+        {
+            Debug.Log("Hit");
+            PlayerManager.Instance.Player.condition.DecreaseHealth(1);
+        }
     }
 }
