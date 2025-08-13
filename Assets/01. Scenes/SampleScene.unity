@@ -127,6 +127,53 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 5896574991861553314, guid: 49e47b8fab0895a4da464f7cc728b70c, type: 3}
   m_PrefabInstance: {fileID: 251849834}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &54950167
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 54950169}
+  - component: {fileID: 54950168}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &54950168
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54950167}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c38e7d752b04e3a42a323d5069420d05, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  defaultCapacity: 10
+  maxPoolSize: 15
+  bulletHolePrefab: {fileID: 6566790153733704129, guid: 1de9b8bf790798847b77011e88a8ed11, type: 3}
+--- !u!4 &54950169
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 54950167}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.61982584, y: 1.5188628, z: -7.175796}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &66786991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2500,7 +2547,7 @@ MonoBehaviour:
   jumpPower: 100
   groundLayerMask:
     serializedVersion: 2
-    m_Bits: 4294967295
+    m_Bits: 55
   cameraContainer: {fileID: 2124703680}
   minXLock: -85
   maxXlock: 85
@@ -4895,3 +4942,4 @@ SceneRoots:
   - {fileID: 86729233}
   - {fileID: 1151022786}
   - {fileID: 1580313899}
+  - {fileID: 54950169}

@@ -83,15 +83,13 @@ public class Equip : MonoBehaviour
     void CreateBulletHole(RaycastHit hit)
     {
         // 탄흔 생성
-        GameObject bulletHole = Instantiate(bulletHolePrefab, hit.point + hit.normal * 0.001f, Quaternion.identity);
-
+        var bulletGo = ObjectPoolManager.Instance.Pool.Get();
+        bulletGo.transform.position = hit.point + hit.normal * 0.001f;
         // 벽 표면 방향으로 회전
-        bulletHole.transform.rotation = Quaternion.LookRotation(-hit.normal);
+        bulletGo.transform.rotation = Quaternion.LookRotation(-hit.normal);
 
         // 탄흔을 맞은 오브젝트에 종속시켜서 같이 움직이게
-        bulletHole.transform.SetParent(hit.collider.transform);
+        bulletGo.transform.SetParent(hit.collider.transform);
 
-        // 일정 시간 후 삭제 (예: 10초 뒤)
-        Destroy(bulletHole, 10f);
     }
 }
